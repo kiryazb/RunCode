@@ -4,12 +4,15 @@ from fastapi_users import schemas
 
 
 class UserRead(schemas.BaseUser[uuid.UUID]):
-    pass
+    id: int
+    score: int = 0
 
 
 class UserCreate(schemas.BaseUserCreate):
-    pass
+    id: int
+    score: int = 0
 
 
 class UserUpdate(schemas.BaseUserUpdate):
-    pass
+    id: int
+    score: int = 0

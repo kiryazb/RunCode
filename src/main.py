@@ -2,6 +2,8 @@ import uuid
 
 from fastapi import FastAPI
 from fastapi_users import FastAPIUsers
+from starlette.middleware import Middleware
+from starlette.middleware.authentication import AuthenticationMiddleware
 
 from .auth.config import auth_backend
 from .auth.manager import get_user_manager
@@ -10,8 +12,10 @@ from .auth.schemas import UserRead, UserCreate
 
 from .main_page.router import router as main_page_router
 
+from .config import SECRET_AUTH as SECRET
+
 app = FastAPI(
-    title="RunCode"
+    title="RunCode",
 )
 
 
@@ -34,4 +38,5 @@ app.include_router(
     prefix="/auth",
     tags=["auth"],
 )
+
 
