@@ -9,7 +9,4 @@ class Base(DeclarativeBase):
 
 class User(SQLAlchemyBaseUserTableUUID, Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    score: Mapped[int] = mapped_column(
-        Integer, nullable=False, default=0
-    )
 

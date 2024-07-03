@@ -13,3 +13,13 @@ async def add_rank(session: AsyncSession, user) -> None:
     session.add(rank)
     await session.flush()
     await session.commit()
+
+
+async def add_score(session: AsyncSession, user: User) -> None:
+    user = await session.get(User, user.id)
+    user.score += 1
+    await session.commit()
+
+
+async def update_place(session: AsyncSession, user: User) -> None:
+    pass
