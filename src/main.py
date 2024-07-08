@@ -1,22 +1,19 @@
 import uuid
 
 from fastapi import FastAPI, HTTPException
-from fastapi_users import FastAPIUsers
 from starlette.responses import JSONResponse
 
 from .auth.config import auth_backend, fastapi_users
-from .auth.manager import get_user_manager
-from .auth.models import User
 from .auth.schemas import UserRead, UserCreate
 
 from .main_page.router import router as main_page_router
 from .problems_system.router import router as problems_system_router
-
-from .config import SECRET_AUTH as SECRET
+from .admin_panel.router import router as admin_panel_router
 
 app = FastAPI(
     title="RunCode",
 )
+
 
 @app.exception_handler(HTTPException)
 async def http_exception_handler(request, exc):
@@ -32,6 +29,7 @@ async def http_exception_handler(request, exc):
             content={"detail": exc.detail}
         )
 
+
 app.include_router(main_page_router)
 
 app.include_router(
@@ -46,9 +44,10 @@ app.include_router(
     tags=["auth"],
 )
 
-
 app.include_router(
     problems_system_router
 )
 
-
+app.include_router(
+    admin_panel_router
+)
