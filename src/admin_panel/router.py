@@ -43,8 +43,9 @@ async def add_test(
         table_name: str,
         input: str,
         output: str,
+        arguments: str,
         session: AsyncSession = Depends(get_async_session)) -> Dict[str, str]:
-    query = insert(create_problem_mixin(table_name)).values(input=input, output=output)
+    query = insert(create_problem_mixin(table_name)).values(input=input, output=output, arguments=arguments)
     await session.execute(query)
     await session.commit()
     return {"status": "success"}

@@ -20,6 +20,9 @@ def create_problem_mixin(table_name):
         table_name,
         Base.metadata,
         Column("input", String),
-        Column("output", String)
+        Column("output", String),
+        Column("arguments", String),
+        extend_existing=True
     )
+
     return table
